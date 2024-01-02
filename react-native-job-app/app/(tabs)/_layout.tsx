@@ -1,63 +1,30 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs, Stack } from 'expo-router';
-import { Pressable, useColorScheme, View, Text } from 'react-native';
+//@ts-nocheck
+import { Stack } from 'expo-router';
+import { useCallback } from 'react';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen'
 
+SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
-  return <Stack />
+
+  const [fontsLoaded] = useFonts({
+    DMBold: require('../../assets/fonts/DMSans-Bold.ttf'),
+    DMMedium: require('../../assets/fonts/DMSans-Medium.ttf'),
+    DMRegular: require('../../assets/fonts/DMSans-Regular.ttf'),
+
+  })
+
+  const onLayoutRootView = useCallback(async ()=> {
+    if(fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded])
+
+  if(!fontsLoaded) return null;
+
+  return <Stack onLayout={onLayoutRootView} />
 
 
 
 }
-
-// import Colors from '../../constants/Colors';
-
-// /**
-//  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-//  */
-// function TabBarIcon(props: {
-//   name: React.ComponentProps<typeof FontAwesome>['name'];
-//   color: string;
-// }) {
-//   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-// }
-
-// export default function TabLayout() {
-//   const colorScheme = useColorScheme();
-
-//   return (
-//     <Tabs
-//       screenOptions={{
-//         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-//       }}>
-//       <Tabs.Screen
-//         name="index"
-//         options={{
-//           title: 'Tab One',
-//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//           headerRight: () => (
-//             <Link href="/modal" asChild>
-//               <Pressable>
-//                 {({ pressed }) => (
-//                   <FontAwesome
-//                     name="info-circle"
-//                     size={25}
-//                     color={Colors[colorScheme ?? 'light'].text}
-//                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-//                   />
-//                 )}
-//               </Pressable>
-//             </Link>
-//           ),
-//         }}
-//       />
-//       <Tabs.Screen
-//         name="two"
-//         options={{
-//           title: 'Tab Two',
-//           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-//         }}
-//       />
-//     </Tabs>
-//   );
-// }
