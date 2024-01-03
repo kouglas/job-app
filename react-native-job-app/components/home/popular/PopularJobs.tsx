@@ -22,6 +22,10 @@ export default function PopularJobs() {
     num_pages: 1
   })
 
+  const [selectedJob, setSelectedJob] = useState()
+
+  const handleeCardPress = (item) => {}
+
   console.log(data)
 
   return (
