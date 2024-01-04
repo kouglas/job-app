@@ -24,7 +24,10 @@ export default function PopularJobs() {
 
   const [selectedJob, setSelectedJob] = useState()
 
-  const handleeCardPress = (item) => {}
+  const handleCardPress = (item) => {
+    router.push(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id);
+  }
 
   console.log(data)
 
@@ -48,6 +51,8 @@ export default function PopularJobs() {
             renderItem={({ item }) => (
               <PopularJobCard
                 item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
           />
         )}
               keyExtractor={item => item?.job_id}

@@ -1,5 +1,11 @@
 //@ts-nocheck
-import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
+import { 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  Image, 
+  Linking 
+} from "react-native";
 
 import styles from "./footer.style";
 import { icons } from "../../../constants";
@@ -7,7 +13,18 @@ import { icons } from "../../../constants";
 const Footer = ({ url }) => {
   return (
     <View style={styles.container}>
-    <Text>Footer</Text>
+    <TouchableOpacity style={styles.likeBtn}>
+      <Image
+        source={icons.heartOutline}
+        resizeMode="contain"
+        style={styles.likeBtnImage}
+      />
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.applyBtn}>
+      <Text 
+      style={styles.applyBtnText}
+      onPress={() => Linking.openURL(url)} >Apply for job</Text>
+    </TouchableOpacity>
     </View>
   );
 };
