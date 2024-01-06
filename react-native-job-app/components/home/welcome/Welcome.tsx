@@ -12,6 +12,7 @@ import { useRouter } from 'expo-router'
 
 import styles from './welcome.style'
 import { icons, SIZES } from "../../../constants";
+import Footer from "../../jobDetails/footer/Footer";
 
 const jobTypes = ["Full-time", "Part-time", "Contractor"]
 
@@ -24,6 +25,7 @@ export default function Welcome({ searchTerm, setSearchTerm, handleClick }){
       <View style={styles.container}>
         <Text style={styles.userName}>Hello Kari</Text>
         <Text style={styles.welcomeMessage}>Find your dream job</Text>
+      
       </View>
       <View style={styles.searchContainer}>
         <View style={styles.searchWrapper}>
